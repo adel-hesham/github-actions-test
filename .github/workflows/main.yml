@@ -27,4 +27,4 @@ jobs:
 
       - name: list repo content
         run: |
-          ls -l github-actions-test
+          ls -l

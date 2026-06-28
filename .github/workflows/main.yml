@@ -2,47 +2,29 @@
 
 
 on:
+  pull_request: 
+    branches:
+      - main
+  push: 
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   ubuntu-runner-demo:
     runs-on: ubuntu-latest
     steps:
-      - name: Print system information
+      - name: Checkout
+        uses: actions/checkout@v7.0.0
+        
+      - name: Print welcome msg
         run: |
-          echo "Runner Information"
-          uname -a
-          lsb_release -a || cat /etc/os-release
+          echo "welcome message"
 
       - name: Check current directory
         run: |
           pwd
-          ls -la
 
-      - name: Update package list
-        run: sudo apt-get update
-
-      - name: Install utilities
+      - name: list repo content
         run: |
-          sudo apt-get install -y tree curl wget
-
-      - name: Show disk usage
-        run: df -h
-
-      - name: Show memory usage
-        run: free -h
-
-      - name: Show CPU information
-        run: lscpu
-
-      - name: Create test files
-        run: |
-          mkdir demo
-          echo "Hello from GitHub Actions" > demo/test.txt
-          tree .
-
-      - name: Display environment variables
-        run: env | sort
-
-      - name: Finish
-        run: echo "Workflow completed successfully!"
+          ls -l github-actions-test

@@ -1,7 +1,12 @@
+
+
+
+on:
+  workflow_dispatch:
+
 jobs:
   ubuntu-runner-demo:
     runs-on: ubuntu-latest
-
     steps:
       - name: Print system information
         run: |

@@ -1,0 +1,43 @@
+jobs:
+  ubuntu-runner-demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print system information
+        run: |
+          echo "Runner Information"
+          uname -a
+          lsb_release -a || cat /etc/os-release
+
+      - name: Check current directory
+        run: |
+          pwd
+          ls -la
+
+      - name: Update package list
+        run: sudo apt-get update
+
+      - name: Install utilities
+        run: |
+          sudo apt-get install -y tree curl wget
+
+      - name: Show disk usage
+        run: df -h
+
+      - name: Show memory usage
+        run: free -h
+
+      - name: Show CPU information
+        run: lscpu
+
+      - name: Create test files
+        run: |
+          mkdir demo
+          echo "Hello from GitHub Actions" > demo/test.txt
+          tree .
+
+      - name: Display environment variables
+        run: env | sort
+
+      - name: Finish
+        run: echo "Workflow completed successfully!"
